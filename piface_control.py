@@ -1,6 +1,7 @@
 #!/usr/local/bin/python
 
 import time, sys
+import config.py
 import pifacedigitalio                                                                  #Library for pifacedigitalio
 from ubidots import ApiClient                                                           #Library for Ubidots
 
@@ -21,15 +22,15 @@ def setPin(pin, value):
 
 try:
     print "Requesting Ubidots token"
-    api = ApiClient('2a2022138765bb949fda84d4b0bcd349335a796b')                           # Replace with your Ubidots API Key here
+    api = ApiClient(config.ACCOUNT_KEY)                           # Replace with your Ubidots API Key here
 except:
     print "No internet connection"
     sys.exit(0)
 
 print "Getting variables"
 try:
-    output2_control = api.get_variable('577bd7097625424643661300')                         #Put here your output2 variable ID
-    relay0_control = api.get_variable('577bd71276254247261c5568')                          #Put here your R0 control variable ID
+    output2_control = api.get_variable(config.OUTPUT2_KEY)                         #Put here your output2 variable ID
+    relay0_control = api.get_variable(config.RELAY0_KEY)                          #Put here your R0 control variable ID
     print "Connected to Ubidots"
 
 except:
